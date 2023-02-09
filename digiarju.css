@@ -146,7 +146,7 @@ a{color:var(--link-color);text-decoration:none} a:hover{opacity:.7;transition:op
 
 /* Button and Icon */
 .button *:before{content:attr(data-text)}
-.button{display:inline-flex;align-items:center;margin:15px 15px 15px 0;padding:10px 20px;outline:0;border:0;border-radius:2px;color:#fefefe;background-color:var(--link-bg-color);font-size:14px;font-family:var(--font-body);white-space:nowrap;overflow:hidden;max-width:100%}
+.button{display:inline-flex;align-items:center;margin:15px 0 15px 0;padding:10px 20px;outline:0;border:0;border-radius:2px;color:#fefefe;background-color:var(--link-bg-color);font-size:14px;font-family:var(--font-body);white-space:nowrap;overflow:hidden;max-width:100%}
 .button.outline{color:var(--body-color);background-color:transparent;border:1px solid var(--body-color-alt)}
 .button.outline:hover{border-color:var(--link-bg-color)}
 .button.whatsapp{background-color:#25D366}
@@ -176,18 +176,7 @@ a{color:var(--link-color);text-decoration:none} a:hover{opacity:.7;transition:op
     display: none;
 }
 
-/* Widget Post Toc */
-.Blog .tocInner, .Blog .spoiler{border:1px solid rgba(0,0,0,.1);border-left:0;border-right:0;padding:25px 15px;margin:30px 0;font-size:15px;font-family:var(--font-body-alt)}
-.Blog .tocInner .tocTitle, .Blog .spoilerTitle{outline:0;font-weight:700;font-family:var(--font-body-alt);color:var(--head-color);display:flex;align-items:center}
-.Blog .tocInner .tocTitle:after{content:'Hide all';font-weight:400;font-size:85%;font-family:var(--font-body);color:var(--body-color);margin-left:auto}
-.Blog .tocInner .tocContent, .Blog .spoilerContent{max-height:1000vh;transition:all .4s ease;-webkit-transition:all .4s ease;overflow:hidden}
 
-/* Widget Post Spoiler */
-.Blog .spoilerTitle label{margin-left:auto;color:#fefefe;background-color:var(--link-bg-color);border-radius:2px;padding:3px 15px;font-size:11px;font-weight:400;font-family:var(--font-body)}
-.Blog .spoilerTitle label::before{content:' Show all'}
-.Blog .spoilerContent{max-height:0}
-.Blog .spoilerInput:checked + .spoilerTitle label:before{content:' Hide all'}
-.Blog .spoilerInput:checked ~ .spoilerContent{max-height:1000vh}
 .main-box{
 	border-radius: 10px;
     border: 1px solid rgb(199 199 199 / 76%);
@@ -199,34 +188,110 @@ a{color:var(--link-color);text-decoration:none} a:hover{opacity:.7;transition:op
 .head-box{
 	padding: 15px 15px;
     border-bottom: 2px solid rgb(26 115 232);
-    width: 150px;
+    width: 14em;
     text-transform: uppercase;
     font-family: 'Roboto',arial,sans-serif;
     font-size: 14p;
     font-weight: 600;
     color: 1a73e8;
 }
-.clear-text {
-	position: absolute;
-	margin-top: -10px;
-    right: 20px;
-    border-radius: 50%;
-    border: none;
-    font-size: 20px;
-    font-family: sans-serif;
-    background-color: white;
-    padding: 10px;
-    width: 40px;
-	cursor: pointer;
-	display:none;
-}
-.clear-text:hover{
-	{opacity: .1}
-}
+
+
 #info{
 	position: relative;
     float: right;
     bottom: 10px;
     font-size: small;
     color: #868686;
+}
+
+  /* The container-radio */
+  .container-radio {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .container-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container-radio:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  label{
+      float: left;
+      margin-right: 20px;
+  }
+  /* When the radio button is checked, add a blue background */
+  .container-radio input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container-radio input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container-radio .checkmark:after {
+     top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+  }
+
+  .resultStr{
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .resultHangul{
+    display: block;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.resultRomanizan{
+    display: block;
+    text-align: center;
+}
+
+select {
+	font-size: medium;
+	padding: 2px;
+	margin-right: 5px;
 }
