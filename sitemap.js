@@ -1,1 +1,265 @@
-/* rawgit url (https://cdn.jsdelivr.net/gh/arhamkih/digishop/sitemap.js) by DigiaArju*/var postTitle=new Array();var postUrl=new Array();var postMp3=new Array();var postDate=new Array();var postLabels=new Array();var postBaru=new Array();var sortBy="titleasc";var tocLoaded=false;var numChars=250;var postFilter="";var numberfeed=0;function loadtoc(a){function b(){if("entry" in a.feed){var d=a.feed.entry.length;numberfeed=d;ii=0;for(var h=0;h<d;h++){var n=a.feed.entry[h];var e=n.title.$t;var m=n.published.$t.substring(0,10);var j;for(var g=0;g<n.link.length;g++){if(n.link[g].rel=="alternate"){j=n.link[g].href;break}}var o="";for(var g=0;g<n.link.length;g++){if(n.link[g].rel=="enclosure"){o=n.link[g].href;break}}var c="";if("category" in n){for(var g=0;g<n.category.length;g++){c=n.category[g].term;var f=c.lastIndexOf(";");if(f!=-1){c=c.substring(0,f)}postLabels[ii]=c;postTitle[ii]=e;postDate[ii]=m;postUrl[ii]=j;postMp3[ii]=o;if(h<10){postBaru[ii]=true}else{postBaru[ii]=false}ii=ii+1}}}}}b();sortBy="titleasc";sortPosts(sortBy);sortlabel();tocLoaded=true;displayToc2();document.write('</br><a href="http://dgarju.blogspot.com/" style="font-size: 10px; text-decoration:none; color: #616469;">Sitemap</a>')}function filterPosts(a){scroll(0,0);postFilter=a;displayToc(postFilter)}function allPosts(){sortlabel();postFilter="";displayToc(postFilter)}function sortPosts(d){function c(e,g){var f=postTitle[e];postTitle[e]=postTitle[g];postTitle[g]=f;var f=postDate[e];postDate[e]=postDate[g];postDate[g]=f;var f=postUrl[e];postUrl[e]=postUrl[g];postUrl[g]=f;var f=postLabels[e];postLabels[e]=postLabels[g];postLabels[g]=f;var f=postMp3[e];postMp3[e]=postMp3[g];postMp3[g]=f;var f=postBaru[e];postBaru[e]=postBaru[g];postBaru[g]=f}for(var b=0;b<postTitle.length-1;b++){for(var a=b+1;a<postTitle.length;a++){if(d=="titleasc"){if(postTitle[b]>postTitle[a]){c(b,a)}}if(d=="titledesc"){if(postTitle[b]<postTitle[a]){c(b,a)}}if(d=="dateoldest"){if(postDate[b]>postDate[a]){c(b,a)}}if(d=="datenewest"){if(postDate[b]<postDate[a]){c(b,a)}}if(d=="orderlabel"){if(postLabels[b]>postLabels[a]){c(b,a)}}}}}function sortlabel(){sortBy="orderlabel";sortPosts(sortBy);var a=0;var b=0;while(b<postTitle.length){temp1=postLabels[b];firsti=a;do{a=a+1}while(postLabels[a]==temp1);b=a;sortPosts2(firsti,a);if(b>postTitle.length){break}}}function sortPosts2(d,c){function e(f,h){var g=postTitle[f];postTitle[f]=postTitle[h];postTitle[h]=g;var g=postDate[f];postDate[f]=postDate[h];postDate[h]=g;var g=postUrl[f];postUrl[f]=postUrl[h];postUrl[h]=g;var g=postLabels[f];postLabels[f]=postLabels[h];postLabels[h]=g;var g=postMp3[f];postMp3[f]=postMp3[h];postMp3[h]=g;var g=postBaru[f];postBaru[f]=postBaru[h];postBaru[h]=g}for(var b=d;b<c-1;b++){for(var a=b+1;a<c;a++){if(postTitle[b]>postTitle[a]){e(b,a)}}}}function displayToc(a){var l=0;var h="";var e="Judul Artikel";var m="Klik untuk sortir berdasarkan judul";var d="Tanggal";var k="Klik untuk Sortir bedasarkan tanggal";var c="Kategori";var j="";if(sortBy=="titleasc"){m+=" (descending)";k+=" (newest first)"}if(sortBy=="titledesc"){m+=" (ascending)";k+=" (newest first)"}if(sortBy=="dateoldest"){m+=" (ascending)";k+=" (newest first)"}if(sortBy=="datenewest"){m+=" (ascending)";k+=" (oldest first)"}if(postFilter!=""){j="Klik untuk menampilkan semua"}h+="<table>";h+="<tr>";h+='<td class="toc-header-col1">';h+='<a href="javascript:toggleTitleSort();" title="'+m+'">'+e+"</a>";h+="</td>";h+='<td class="toc-header-col2">';h+='<a href="javascript:toggleDateSort();" title="'+k+'">'+d+"</a>";h+="</td>";h+='<td class="toc-header-col3">';h+='<a href="javascript:allPosts();" title="'+j+'">'+c+"</a>";h+="</td>";h+='<td class="toc-header-col4">';h+="Download MP3";h+="</td>";h+="</tr>";for(var g=0;g<postTitle.length;g++){if(a==""){h+='<tr><td class="toc-entry-col1"><a href="'+postUrl[g]+'">'+postTitle[g]+'</a></td><td class="toc-entry-col2">'+postDate[g]+'</td><td class="toc-entry-col3">'+postLabels[g]+'</td><td class="toc-entry-col4"><a href="'+postMp3[g]+'">Download</a></td></tr>';l++}else{z=postLabels[g].lastIndexOf(a);if(z!=-1){h+='<tr><td class="toc-entry-col1"><a href="'+postUrl[g]+'">'+postTitle[g]+'</a></td><td class="toc-entry-col2">'+postDate[g]+'</td><td class="toc-entry-col3">'+postLabels[g]+'</td><td class="toc-entry-col4"><a href="'+postMp3[g]+'">Download</a></td></tr>';l++}}}h+="</table>";if(l==postTitle.length){var f='<span class="toc-note">Menampilkan Semua '+postTitle.length+" Artikel<br/></span>"}else{var f='<span class="toc-note">Menampilkan '+l+" artikel dengan kategori '";f+=postFilter+"' dari "+postTitle.length+" Total Artikel<br/></span>"}var b=document.getElementById("toc");b.innerHTML=f+h}function displayToc2(){var a=0;var b=0;while(b<postTitle.length){temp1=postLabels[b];document.write("<p/>");document.write('<p><a href="/search/label/'+temp1+'">'+temp1+"</a></p><ol>");firsti=a;do{document.write("<li>");document.write('<a href="'+postUrl[a]+'">'+postTitle[a]+"</a>");if(postBaru[a]==true){document.write(' - <strong><em><span style="color: rgb(255, 0, 0);">New !!</span> </em></strong>')}document.write("</li>");a=a+1}while(postLabels[a]==temp1);b=a;document.write("</ol>");sortPosts2(firsti,a);if(b>postTitle.length){break}}}function toggleTitleSort(){if(sortBy=="titleasc"){sortBy="titledesc"}else{sortBy="titleasc"}sortPosts(sortBy);displayToc(postFilter)}function toggleDateSort(){if(sortBy=="datenewest"){sortBy="dateoldest"}else{sortBy="datenewest"}sortPosts(sortBy);displayToc(postFilter)}function showToc(){if(tocLoaded){displayToc(postFilter);var a=document.getElementById("toclink")}else{alert("Just wait... TOC is loading")}}function hideToc(){var a=document.getElementById("toc");a.innerHTML="";var b=document.getElementById("toclink");b.innerHTML='<a href="#" onclick="scroll(0,0); showToc(); Effect.toggle(\'toc-result\',\'blind\');">?? Menampilkan Daftar Isi</a> <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWO5-uhbtaabRddh_arXFi6H8ffCIKY3UqVu1nQ86fZColCCmW3fOzD8iHJ6XRjMBzrgoFb4IssKFrBYCQDvJLgRHsImfSFZrKMgR4GipxtVTryKQ6DyV0GVNHj-yQ9GaAvNptlU3SAgkS3Orv-Wuxw5Wdyak6FQQkGU9UJtMzynEA-gLsxR6y0w/s0/baru.gif"/>'}function looptemp2(){for(var a=0;a<numberfeed;a++){document.write("<br>");document.write('Post Link    : <a href="'+postUrl[a]+'">'+postTitle[a]+"</a><br>");document.write('Download mp3  : <a href="'+postMp3[a]+'">'+postTitle[a]+"</a><br>");document.write("<br>")}};
+// ---------------------------------------------------
+// BLOGTOC
+// ---------------------------------------------------
+// BlogToc creates a clickable Table Of Contents for
+// Blogger Blogs.
+// It uses the JSON post feed, and create a ToC of it.
+// The ToC can be sorted by title or by date, both
+// ascending and descending, and can be filtered by
+// label.
+// ---------------------------------------------------
+// DigiArju
+
+   var postTitle = new Array();     // array of posttitles
+   var postUrl = new Array();       // array of posturls
+   var postDate = new Array();      // array of post publish dates
+   var postSum = new Array();       // array of post summaries
+   var postLabels = new Array();    // array of post labels
+
+// global variables
+   var sortBy = "datenewest";         // default value for sorting ToC
+   var tocLoaded = false;           // true if feed is read and ToC can be displayed
+   var numChars = 250;              // number of characters in post summary
+   var postFilter = '';             // default filter value
+   var tocdiv = document.getElementById("bp_toc"); //the toc container
+   var totalEntires =0; //Entries grabbed till now
+   var totalPosts =0; //Total number of posts in the blog.
+
+// main callback function
+
+function loadtoc(json) {
+
+   function getPostData() {
+   // this functions reads all postdata from the json-feed and stores it in arrays
+      if ("entry" in json.feed) {
+         var numEntries = json.feed.entry.length;
+         totalEntires = totalEntires + numEntries;
+         totalPosts=json.feed.openSearch$totalResults.$t
+         if(totalPosts>totalEntires)
+         {
+         var nextjsoncall = document.createElement('script');
+         nextjsoncall.type = 'text/javascript';
+         startindex=totalEntires+1;
+         nextjsoncall.setAttribute("src", "/feeds/posts/summary?start-index=" + startindex + "&max-results=500&alt=json-in-script&callback=loadtoc");
+         tocdiv.appendChild(nextjsoncall);
+         }
+      // main loop gets all the entries from the feed
+         for (var i = 0; i < numEntries; i++) {
+         // get the entry from the feed
+            var entry = json.feed.entry[i];
+
+         // get the posttitle from the entry
+            var posttitle = entry.title.$t;
+
+         // get the post date from the entry
+            var postdate = entry.published.$t.substring(0,10);
+
+         // get the post url from the entry
+            var posturl;
+            for (var k = 0; k < entry.link.length; k++) {
+               if (entry.link[k].rel == 'alternate') {
+               posturl = entry.link[k].href;
+               break;
+               }
+            }
+
+         // get the post contents from the entry
+         // strip all html-characters, and reduce it to a summary
+            if ("content" in entry) {
+               var postcontent = entry.content.$t;}
+            else
+               if ("summary" in entry) {
+                  var postcontent = entry.summary.$t;}
+               else var postcontent = "";
+         // strip off all html-tags
+            var re = /<\S[^>]*>/g; 
+            postcontent = postcontent.replace(re, "");
+         // reduce postcontent to numchar characters, and then cut it off at the last whole word
+            if (postcontent.length > numChars) {
+               postcontent = postcontent.substring(0,numChars);
+               var quoteEnd = postcontent.lastIndexOf(" ");
+               postcontent = postcontent.substring(0,quoteEnd) + '...';
+            }
+
+         // get the post labels from the entry
+            var pll = '';
+            if ("category" in entry) {
+               for (var k = 0; k < entry.category.length; k++) {
+                  pll += '<a href="javascript:filterPosts(\'' + entry.category[k].term + '\');" title="Click here to select all posts with label \'' + entry.category[k].term + '\'">' + entry.category[k].term + '</a>,  ';
+               }
+            var l = pll.lastIndexOf(',');
+            if (l != -1) { pll = pll.substring(0,l); }
+            }
+
+         // add the post data to the arrays
+            postTitle.push(posttitle);
+            postDate.push(postdate);
+            postUrl.push(posturl);
+            postSum.push(postcontent);
+            postLabels.push(pll);
+         }
+      }
+      if(totalEntires==totalPosts) {tocLoaded=true;showToc();}
+   } // end of getPostData
+
+// start of showtoc function body
+// get the number of entries that are in the feed
+//   numEntries = json.feed.entry.length;
+
+// get the postdata from the feed
+   getPostData();
+
+// sort the arrays
+   sortPosts(sortBy);
+   tocLoaded = true;
+}
+
+
+
+// filter and sort functions
+
+
+function filterPosts(filter) {
+// This function changes the filter
+// and displays the filtered list of posts
+  // document.getElementById("bp_toc").scrollTop = document.getElementById("bp_toc").offsetTop;;
+   postFilter = filter;
+   displayToc(postFilter);
+} // end filterPosts
+
+function allPosts() {
+// This function resets the filter
+// and displays all posts
+
+   postFilter = '';
+   displayToc(postFilter);
+} // end allPosts
+
+function sortPosts(sortBy) {
+// This function is a simple bubble-sort routine
+// that sorts the posts
+
+   function swapPosts(x,y) {
+   // Swaps 2 ToC-entries by swapping all array-elements
+      var temp = postTitle[x];
+      postTitle[x] = postTitle[y];
+      postTitle[y] = temp;
+      var temp = postDate[x];
+      postDate[x] = postDate[y];
+      postDate[y] = temp;
+      var temp = postUrl[x];
+      postUrl[x] = postUrl[y];
+      postUrl[y] = temp;
+      var temp = postSum[x];
+      postSum[x] = postSum[y];
+      postSum[y] = temp;
+      var temp = postLabels[x];
+      postLabels[x] = postLabels[y];
+      postLabels[y] = temp;
+   } // end swapPosts
+
+   for (var i=0; i < postTitle.length-1; i++) {
+      for (var j=i+1; j<postTitle.length; j++) {
+         if (sortBy == "titleasc") { if (postTitle[i] > postTitle[j]) { swapPosts(i,j); } }
+         if (sortBy == "titledesc") { if (postTitle[i] < postTitle[j]) { swapPosts(i,j); } }
+         if (sortBy == "dateoldest") { if (postDate[i] > postDate[j]) { swapPosts(i,j); } }
+         if (sortBy == "datenewest") { if (postDate[i] < postDate[j]) { swapPosts(i,j); } }
+      }
+   }
+} // end sortPosts
+
+// displaying the toc
+
+function displayToc(filter) {
+// this function creates a three-column table and adds it to the screen
+   var numDisplayed = 0;
+   var tocTable = '';
+   var tocHead1 = 'POST TITLE';
+   var tocTool1 = 'Click to sort by title';
+   var tocHead2 = 'POST DATE';
+   var tocTool2 = 'Click to sort by date';
+   var tocHead3 = 'LABELS';
+   var tocTool3 = '';
+   if (sortBy == "titleasc") { 
+      tocTool1 += ' (descending)';
+      tocTool2 += ' (newest first)';
+   }
+   if (sortBy == "titledesc") { 
+      tocTool1 += ' (ascending)';
+      tocTool2 += ' (newest first)';
+   }
+   if (sortBy == "dateoldest") { 
+      tocTool1 += ' (ascending)';
+      tocTool2 += ' (newest first)';
+   }
+   if (sortBy == "datenewest") { 
+      tocTool1 += ' (ascending)';
+      tocTool2 += ' (oldest first)';
+   }
+   if (postFilter != '') {
+      tocTool3 = 'Click to show all posts';
+   }
+   tocTable += '<table>';
+   tocTable += '<tr>';
+   tocTable += '<td class="toc-header-col1">';
+   tocTable += '<a href="javascript:toggleTitleSort();" title="' + tocTool1 + '">' + tocHead1 + '</a>';
+   tocTable += '</td>';
+   tocTable += '<td class="toc-header-col2">';
+   tocTable += '<a href="javascript:toggleDateSort();" title="' + tocTool2 + '">' + tocHead2 + '</a>';
+   tocTable += '</td>';
+   tocTable += '<td class="toc-header-col3">';
+   tocTable += '<a href="javascript:allPosts();" title="' + tocTool3 + '">' + tocHead3 + '</a>';
+   tocTable += '</td>';
+   tocTable += '</tr>';
+   for (var i = 0; i < postTitle.length; i++) {
+      if (filter == '') {
+         tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
+         numDisplayed++;
+      } else {
+          z = postLabels[i].lastIndexOf(filter);
+          if ( z!= -1) {
+             tocTable += '<tr><td class="toc-entry-col1"><a href="' + postUrl[i] + '" title="' + postSum[i] + '">' + postTitle[i] + '</a></td><td class="toc-entry-col2">' + postDate[i] + '</td><td class="toc-entry-col3">' + postLabels[i] + '</td></tr>';
+             numDisplayed++;
+          }
+        }
+   }
+   tocTable += '</table>';
+   if (numDisplayed == postTitle.length) {
+      var tocNote = '<span class="toc-note">Displaying all ' + postTitle.length + ' posts<br/></span>'; }
+   else {
+      var tocNote = '<span class="toc-note">Displaying ' + numDisplayed + ' posts labeled \'';
+      tocNote += postFilter + '\' of '+ postTitle.length + ' posts total<br/></span>';
+   }
+   tocdiv.innerHTML = tocNote + tocTable;
+} // end of displayToc
+
+function toggleTitleSort() {
+   if (sortBy == "titleasc") { sortBy = "titledesc"; }
+   else { sortBy = "titleasc"; }
+   sortPosts(sortBy);
+   displayToc(postFilter);
+} // end toggleTitleSort
+
+function toggleDateSort() {
+   if (sortBy == "datenewest") { sortBy = "dateoldest"; }
+   else { sortBy = "datenewest"; }
+   sortPosts(sortBy);
+   displayToc(postFilter);
+} // end toggleTitleSort
+
+
+function showToc() {
+  if (tocLoaded) { 
+     displayToc(postFilter);
+     var toclink = document.getElementById("toclink");
+   
+  }
+  else { alert("Just wait... TOC is loading"); }
+}
+
+function hideToc() {
+  var tocdiv = document.getElementById("toc");
+  tocdiv.innerHTML = '';
+  var toclink = document.getElementById("toclink");
+  toclink.innerHTML = '<a href="#" onclick="scroll(0,0); showToc(); Effect.toggle('+"'toc-result','blind');"+'">» Show Table of Contents</a> <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWO5-uhbtaabRddh_arXFi6H8ffCIKY3UqVu1nQ86fZColCCmW3fOzD8iHJ6XRjMBzrgoFb4IssKFrBYCQDvJLgRHsImfSFZrKMgR4GipxtVTryKQ6DyV0GVNHj-yQ9GaAvNptlU3SAgkS3Orv-Wuxw5Wdyak6FQQkGU9UJtMzynEA-gLsxR6y0w/s0/baru.gif"/>';
+}
