@@ -459,6 +459,14 @@ display: none;
     background: linear-gradient(45deg, #324e63, #414447);
     box-shadow: 0px 4px 30px rgba(55, 75, 90, 0.6);
     }
+    .pencet-medsos__kih.whatsapp {
+        background: linear-gradient(45deg, #04ac95, #06b632);
+        box-shadow: 0px 4px 30px rgba(6, 133, 23, 0.897);
+    }
+    .pencet-medsos__kih.youtube {
+        background: linear-gradient(45deg, #c50909, #c90d0d);
+        box-shadow: 0px 4px 30px rgba(160, 4, 25, 0.897);
+    }
     .pencet-medsos__kih.link {
     background: linear-gradient(45deg, #d5135a, #f05924);
     box-shadow: 0px 4px 30px rgba(223, 45, 70, 0.6);
